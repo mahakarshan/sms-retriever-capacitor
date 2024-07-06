@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
-public class SMSReceiver extends BroadcastReceiver {
+public class SmsReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -23,7 +23,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     Log.d("SMSReceiver", "Message from " + phoneNumber + ": " + msg);
 
                     // Define your search string for the OTP
-                    String searchString = "Your OTP is: ";
+                    String searchString = "Your OTP is ";
                     if (msg.contains(searchString)) {
                         String otp = msg.substring(msg.indexOf(searchString) + searchString.length());
                         Log.d("SMSReceiver", "OTP: " + otp);
