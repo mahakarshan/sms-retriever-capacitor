@@ -1,22 +1,27 @@
 package com.mahakarshan.sms;
 
-import com.getcapacitor.JSObject;
+import android.Manifest;
+import android.content.pm.PackageManager;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+import com.getcapacitor.CapacitorPlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
+import com.getcapacitor.annotation.PluginMethod;
 
-@CapacitorPlugin(name = "sms")
-public class smsPlugin extends Plugin {
-
-    private sms implementation = new sms();
+@CapacitorPlugin(name = "SmsReader")
+public class SmsReaderPlugin extends Plugin {
+    private SMSReader implementation = new SMSReader();
 
     @PluginMethod
-    public void echo(PluginCall call) {
-        String value = call.getString("value");
-
-        JSObject ret = new JSObject();
-        ret.put("value", implementation.echo(value));
-        call.resolve(ret);
+    public void readSMS(PluginCall call) {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_SMS}, 1);
+        } else {
+            implementation.readSMS(call, getContext());
+        }
     }
 }
