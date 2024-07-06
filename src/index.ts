@@ -22,9 +22,9 @@ export interface ReadSMSResult {
 }
 
 /**
- * Defines the interface for the SmsReaderPlugin.
+ * Defines the interface for the SMSReaderPlugin.
  */
-export interface SmsReaderPlugin {
+export interface SMSReaderPlugin {
   /**
    * Reads the OTP from SMS messages based on the provided search string.
    * @param options - An object containing the search string.
@@ -34,9 +34,9 @@ export interface SmsReaderPlugin {
 }
 
 /**
- * Web implementation of the SmsReaderPlugin.
+ * Web implementation of the SMSReaderPlugin.
  */
-export class SmsReaderWeb extends WebPlugin implements SmsReaderPlugin {
+export class SmsReaderWeb extends WebPlugin implements SMSReaderPlugin {
   /**
    * Reads the OTP from SMS messages based on the provided search string.
    * @param options - An object containing the search string.
@@ -49,7 +49,7 @@ export class SmsReaderWeb extends WebPlugin implements SmsReaderPlugin {
   }
 }
 
-const SmsReader = registerPlugin<SmsReaderPlugin>('SmsReader', {
+const SmsReader = registerPlugin<SMSReaderPlugin>('SmsReader', {
   web: () => import('./web').then(m => new m.SmsReaderWeb()),
 });
 

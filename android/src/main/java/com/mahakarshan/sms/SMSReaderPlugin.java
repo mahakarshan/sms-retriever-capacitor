@@ -6,14 +6,13 @@ import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.getcapacitor.CapacitorPlugin;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.PluginMethod;
 
 @CapacitorPlugin(name = "SmsReader")
-public class SmsReaderPlugin extends Plugin {
+public class SMSReaderPlugin extends Plugin {
     private SMSReader implementation = new SMSReader();
 
     @PluginMethod
