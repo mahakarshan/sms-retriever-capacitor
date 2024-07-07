@@ -152,6 +152,4 @@ With this setup, the plugin will start watching for SMS messages that contain th
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
----
 
-This `README.md` now provides a detailed, readable, and beautifully styled overview of the `sms-retriever` plugin, including installation instructions, API documentation, and a usage example. The addition of badges and icons enhances the visual appeal and provides quick insights into the plugin's status and usage.
