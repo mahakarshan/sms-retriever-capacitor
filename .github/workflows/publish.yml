@@ -27,6 +27,9 @@ jobs:
     #     github_token: ${{ secrets.GH_TOKEN }}
     #     semver: auto
     #     branch: dev # Ensure this matches your default branch
+    - name: Configure npm for publishing
+      run: |
+        echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
     - name: Publish to npm
       run: npm publish
