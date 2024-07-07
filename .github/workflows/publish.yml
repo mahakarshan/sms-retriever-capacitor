@@ -3,7 +3,7 @@ name: Publish Package
 on:
   push:
     branches:
-      - main # Change this to your default branch
+      - dev # Change this to your default branch
 
 jobs:
   publish:
