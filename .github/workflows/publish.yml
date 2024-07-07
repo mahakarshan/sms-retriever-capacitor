@@ -1,0 +1,47 @@
+name: Publish Package
+
+on:
+  push:
+    branches:
+      - main # Change this to your default branch
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '22' # Use the version of Node.js you prefer
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run tests
+      run: npm test # Ensure your tests pass before publishing
+
+    - name: Bump version and push tag
+      id: version
+      uses: anothrNick/github-tag-action@v1.35.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        semver: auto
+        branch: main # Ensure this matches your default branch
+
+    - name: Publish to npm
+      run: npm publish
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    - name: Create GitHub Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version.outputs.new_tag }}
+        release_name: Release ${{ steps.version.outputs.new_tag }}
+        draft: false
+        prerelease: false
