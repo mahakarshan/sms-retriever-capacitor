@@ -20,13 +20,13 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Bump version and push tag
-      id: version
-      uses: anothrNick/github-tag-action@1.67.0
-      with:
-        github_token: ${{ secrets.GH_TOKEN }}
-        semver: auto
-        branch: dev # Ensure this matches your default branch
+    # - name: Bump version and push tag
+    #   id: version
+    #   uses: anothrNick/github-tag-action@1.67.0
+    #   with:
+    #     github_token: ${{ secrets.GH_TOKEN }}
+    #     semver: auto
+    #     branch: dev # Ensure this matches your default branch
 
     - name: Publish to npm
       run: npm publish
