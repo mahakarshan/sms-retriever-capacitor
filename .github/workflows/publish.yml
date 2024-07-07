@@ -24,7 +24,7 @@ jobs:
       id: version
       uses: anothrNick/github-tag-action@1.67.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GH_TOKEN }}
         semver: auto
         branch: dev # Ensure this matches your default branch
 
@@ -36,7 +36,7 @@ jobs:
     - name: Create GitHub Release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         tag_name: ${{ steps.version.outputs.new_tag }}
         release_name: Release ${{ steps.version.outputs.new_tag }}
